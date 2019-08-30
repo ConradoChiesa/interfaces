@@ -13,20 +13,42 @@ apliFilter(img01);
 
 function apliFilter(img01){
 
-    var imgToGray = ctx.getImageData(0, 0, width, height);
+    let imgToGray = ctx.getImageData(0, 0, width, height);
     let data1 = imgToGray.data;
     
-    for (let i = 0; i < data1.length; i += 4) {
-        let gris = parseInt((data1[i] + data1[i + 1] + data1[i + 2]) / 3);
-        data1[i] = gris;
-        data1[i + 1] = gris;
-        data1[i + 2] = gris;
-        data1[i + 3] = 255;
+    for (let i = 0; i < imgToGray.height; i ++) {
+        for (let j = 0; j < imgToGray.width; j++) {
+                        
+            let r = getRed(imgToGray, i, j);
+            let g = getGreen(imgToGray, i, j);
+            let b = getBlue(imgToGray, i, j);
+
+            let gris = (r + g + b) / 3;
+            //setPixel(imgTogray, r, g, b);
+            imgToGray.data[i] = gris;
+            imgToGray.data[i + 1] = gris;
+            imgToGray.data[i + 2] = gris;
+            imgToGray.data[i + 3] = 255;
+        }
+    }
+    function getRed(imgToGray, x, y) {
+        let index = (x + y * imgToGray.width) * 4;
+        return imgToGray.data[index+0];
     }
     
+    function getGreen(imgToGray, x, y) {
+        let index = (x + y * imgToGray.width) * 4;
+        return imgToGray.data[index+1];
+    }
+    
+    function getBlue(imgToGray, x, y) {
+        let index = (x + y * imgToGray.width) * 4;
+        return imgToGray.data[index+2];
+    }
+
     img01.onload = function() {
-        //ctx.drawImage(img01, 0, 0);
-        //ctx.putImageData(imgToGray,0,0);
+        ctx.drawImage(img01, 0, 0);
+        ctx.putImageData(imgToGray,0,0);
         
     }
 }
