@@ -19,6 +19,9 @@ function setPixel(degrade, i, j, color) {
     degrade.data[index+2] = color;
     degrade.data[index+3] = 255;
 }
+ctx.strokeStyle = "#000000";
+ctx.lineWidth = 2;
+ctx.strokeRect(0, 0, h, h);
 
 // let degrade = ctx.createLinearGradient(0,0,0,300);
 // degrade.addColorStop(0, "#000000");

@@ -1,5 +1,7 @@
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
+let canvas2 = document.getElementById('canvas2');
+let ctx2 = canvas.getContext('2d');
 let width = canvas.width;
 let height = canvas.height;
 
@@ -8,28 +10,32 @@ let imgData = img01.data;
 img01.src = "/home/konrad/Documentos/Interfaces/Aguila.jpg";
 img01.onload = function() {
     ctx.drawImage(img01, 0, 0);
+    apliFilter(img01);
 }
-apliFilter(img01);
 
 function apliFilter(img01){
 
-    let imgToGray = ctx.getImageData(0, 0, width, height);
+    let imgToGray = ctx.getImageData(0, 0, img01.width, img01.height);
     let data1 = imgToGray.data;
     
-    for (let i = 0; i < imgToGray.height; i ++) {
-        for (let j = 0; j < imgToGray.width; j++) {
+    for (let i = 0; i < imgToGray.width; i ++) {
+        for (let j = 0; j < imgToGray.height; j++) {
                         
             let r = getRed(imgToGray, i, j);
             let g = getGreen(imgToGray, i, j);
             let b = getBlue(imgToGray, i, j);
+            setPixel(imgToGray, i, j, r, g, b);
 
-            let gris = (r + g + b) / 3;
-            //setPixel(imgTogray, r, g, b);
-            imgToGray.data[i] = gris;
-            imgToGray.data[i + 1] = gris;
-            imgToGray.data[i + 2] = gris;
-            imgToGray.data[i + 3] = 255;
         }
+    }
+
+    function setPixel(imgToGray, x, y, r, g, b) {
+        let i = (x + y * imgToGray.width) * 4;
+        let gris = (r + g + b) / 3;
+        imgToGray.data[i] = gris;
+        imgToGray.data[i + 1] = gris;
+        imgToGray.data[i + 2] = gris;
+        imgToGray.data[i + 3] = 255;
     }
     function getRed(imgToGray, x, y) {
         let index = (x + y * imgToGray.width) * 4;
@@ -46,9 +52,7 @@ function apliFilter(img01){
         return imgToGray.data[index+2];
     }
 
-    img01.onload = function() {
-        ctx.drawImage(img01, 0, 0);
-        ctx.putImageData(imgToGray,0,0);
-        
-    }
+    ctx.putImageData(imgToGray,0,0);
+    // ctx.drawImage(imgToGray, 0, 0);
+
 }

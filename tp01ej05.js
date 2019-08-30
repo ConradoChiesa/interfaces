@@ -1,17 +1,18 @@
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
-let h = 800;
-let degrade = ctx.createImageData(500, h);
+let h = canvas.height;
+let w = canvas.width;
+let degrade = ctx.createImageData(w, h);
 
 
 
-for (let i = 0; i < degrade.width; i++) {
-    for (let j = 0; j < degrade.height; j++) {
-        let altura = (j/h);
+for (let i = 0; i < degrade.height; i++) {
+    for (let j = 0; j < degrade.width; j++) {
+        let altura = (i/h);
         setPixel(degrade, i, j, altura);
     }
 }
-ctx.putImageData(degrade, 50, 30);
+ctx.putImageData(degrade, 0, 0);
 
 function setPixel(degrade, i, j, altura) {
     if (altura < 0.5) {
