@@ -7,14 +7,15 @@ let height = canvas.height;
 
 let img01 = new Image();
 let imgData = img01.data;
-img01.src = "/home/konrad/Documentos/Interfaces/Aguila.jpg";
+img01.src = "http://c2.peakpx.com/wallpaper/287/538/402/5k-art-face-spraypaint-wrinkle-wallpaper-preview.jpg";
 img01.onload = function() {
     ctx.drawImage(img01, 0, 0);
+    
     apliFilter(img01);
 }
 
 function apliFilter(img01){
-
+    alert("va");
     let imgToGray = ctx.getImageData(0, 0, img01.width, img01.height);
     let data1 = imgToGray.data;
     
