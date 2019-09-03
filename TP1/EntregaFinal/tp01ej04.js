@@ -24,6 +24,7 @@ ctx.strokeStyle = "#000000";
 ctx.lineWidth = 2;
 ctx.strokeRect(0, 0, w, h);
 
+// Así funciona pero no es lo que se pedía 
 // let degrade = ctx.createLinearGradient(0,0,0,300);
 // degrade.addColorStop(0, "#000000");
 // degrade.addColorStop(1, "#FFFFFF");
@@ -32,5 +33,3 @@ ctx.strokeRect(0, 0, w, h);
 // ctx.strokeStyle = "#00FF00";
 // ctx.lineWidth = 5;
 // ctx.strokeRect(50, 50, 250, 350);
-
-// color = (j/h)*255 donde J es el segundo for y H el alto de la imagen

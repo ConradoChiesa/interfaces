@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', load());
-
-function load(){
+document.addEventListener('DOMContentLoaded', () => {
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = "#2A0000";
@@ -8,7 +6,6 @@ function load(){
     ctx.fillRect(100, 100, 300, 100);
     ctx.arc(250, 50, 45, 0, 2 * Math.PI);
     ctx.lineWidth = 10;
-    
     ctx.fillStyle = "#FF0000";
     ctx.fill();
     ctx.stroke();
@@ -20,5 +17,5 @@ function load(){
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
-
-}
+    }
+);
