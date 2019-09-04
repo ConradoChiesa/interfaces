@@ -239,5 +239,13 @@
     color: #999;
   }
   .container {
-      margin-top: 350px;
+    width: 780px;
+    height: 500px;
+  }
+  a{
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+  }
+  footer {
+    background-color: rgb(59, 50, 50)
   }
