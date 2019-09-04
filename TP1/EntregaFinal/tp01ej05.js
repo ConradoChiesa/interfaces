@@ -3,6 +3,7 @@ let ctx = canvas.getContext('2d');
 let h = canvas.clientHeight;
 let w = canvas.clientWidth;
 let degrade = ctx.createImageData(w, h);
+
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < h; i++) {
         for (let j = 0; j < w; j++) {

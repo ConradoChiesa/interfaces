@@ -1,23 +1,26 @@
+let w = 100;
+let h = 100;
 document.addEventListener('DOMContentLoaded', () => {
-    let w = 100;
-    let h = 100;
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
     ctx.font = "bold 22px sans-serif";
     ctx.fillText("Resultados en consola",20,20);
     let matriz = [];
 
-    for(let i = 0; i < w; i++) {
-        matriz[i] = [];
-        for(let j = 0; j < h; j++){
-            matriz[i][j] = Math.floor(Math.random() * 1001);
-        }
-    }
+    completeRandom(matriz);
     console.table(matriz);
     getMax(matriz);
     getMaxParMinInpar(matriz);
     getPromedios(matriz);
 });   
+
+function completeRandom(matriz) {
+    for(let i = 0; i < w; i++) {
+        matriz[i] = [];
+        for(let j = 0; j < h; j++)
+            matriz[i][j] = Math.floor(Math.random() * 1001);
+    }
+}
 
 function getMax(matriz) {
     let aux = 0;
@@ -53,15 +56,10 @@ function getPromedios(matriz) {
     let promedio = [];
     let aux;
     let prom;
-    // console.table(promedio);
     for (let i = 0; i < matriz.length; i++) {
         aux = 0;
-        for (let j = 0; j < matriz.length; j++) {
-            // aux = aux + matriz[i][j];
+        for (let j = 0; j < matriz.length; j++) 
             aux += matriz[i][j];
-        }
-        // console.log(matriz[i][j]);
-        
         prom = aux/matriz.length;
         promedio.push(prom);
     }
