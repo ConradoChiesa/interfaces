@@ -4,7 +4,7 @@ class Poligono {
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
         this.circles = [];
-        this.centerPoligon = [];
+        this.centerPoligon;
     }
 
     draw(){
@@ -70,9 +70,12 @@ class Poligono {
         }
         promX = promX / this.circles.length;
         promY = promY / this.circles.length;
-        console.log(promX);
-        console.log(promY);
-        
+        let center = new Circle(promX, promY, radio, color);
+
+        this.centerPoligon = center;
+        console.log(this.centerPoligon); // center es toda la información del circulo
+        this.centerPoligon.draw(ctx);
     }
 
+    
 }
