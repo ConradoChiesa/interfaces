@@ -1,14 +1,10 @@
 class Poligono {
 
-
-    //private circles: []
-
     constructor() {
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
-        
         this.circles = [];
-        
+        this.centerPoligon = [];
     }
 
     draw(){
@@ -28,6 +24,7 @@ class Poligono {
 
     drawLine(x1, y1, x2, y2, color) {
         ctx.beginPath();
+        ctx.lineWidth = 2;
         ctx.moveTo(x1 ,y1);
         ctx.lineTo(x2 ,y2);
         ctx.strokeStyle = color;
@@ -35,9 +32,8 @@ class Poligono {
         ctx.closePath();
     }
 
-    addCircle(x, y) {
+    addCircle(x, y, color) {
         let radio = 10;
-        let color = "#FF0000";
         let circle = new Circle(x, y, radio, color);
         this.circles.push(circle);
         
@@ -51,8 +47,32 @@ class Poligono {
             let y2 = this.circles[this.circles.length-1].y;
             let color = "#FFFF00";
             this.drawLine(x1, y1, x2, y2, color);
+            this.calcCenter;
+                        
         } else {
             alert("El poligono debe contar con al menos 3 vertices");
         }
     }
+
+    clean() {
+        for (let i = 0; i < this.circles.length; i++) 
+            this.circles.splice(i);
+    }
+
+    calcCenter() {
+        let color = "#00FF00"
+        let radio = 7;
+        let promX = new Number();
+        let promY = new Number();
+        for (let i = 0; i < this.circles.length; i++) {
+            promX += this.circles[i].x;
+            promY += this.circles[i].y;
+        }
+        promX = promX / this.circles.length;
+        promY = promY / this.circles.length;
+        console.log(promX);
+        console.log(promY);
+        
+    }
+
 }
