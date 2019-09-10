@@ -1,14 +1,15 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext('2d');
-
+let btnClose = document.getElementById("closePoligon");
 
 let poligono = new Poligono();
 
 document.addEventListener("DOMContentLoaded", () => {
     // 
    
-    
+    btnClose.addEventListener("click", handleBtnClosePoligon);
     canvas.addEventListener("click", handleCanvasClick);
+    
 });
 
 function handleCanvasClick(event){
@@ -23,6 +24,9 @@ function handleCanvasClick(event){
     poligono.draw();
 }
 
+function handleBtnClosePoligon() {
+        poligono.close();
+}
 function createCircle(x, y) {
     let radio = 10;
     let color = "#FF0000";
