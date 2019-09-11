@@ -5,6 +5,7 @@ class Poligono {
         let ctx = canvas.getContext('2d');
         this.circles = [];
         this.centerPoligon;
+        
     }
 
     draw(){
@@ -47,16 +48,22 @@ class Poligono {
             let y2 = this.circles[this.circles.length-1].y;
             let color = "#FFFF00";
             this.drawLine(x1, y1, x2, y2, color);
-            this.calcCenter;
-                        
+            // this.calcCenter;
         } else {
             alert("El poligono debe contar con al menos 3 vertices");
         }
     }
 
+    get cerrado() {
+        if (this.circles.length > 2) {
+            return true;
+        }
+    }
+    
     clean() {
         for (let i = 0; i < this.circles.length; i++) 
             this.circles.splice(i);
+            this.centerPoligon = null;
     }
 
     calcCenter() {
