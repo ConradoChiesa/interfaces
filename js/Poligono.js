@@ -73,7 +73,6 @@ class Poligono {
         let center = new Circle(promX, promY, radio, color);
 
         this.centerPoligon = center;
-        console.log(this.centerPoligon); // center es toda la información del circulo
         this.centerPoligon.draw(ctx);
     }
 

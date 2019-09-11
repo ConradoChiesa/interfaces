@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnClean.addEventListener("click", handleBtnClean);
     btnClose.addEventListener("click", handleBtnClosePoligon);
     canvas.addEventListener("click", handleCanvasClick);
-    
+    canvas.addEventListener("mousedown", handleCanasMouseDown);
 });
 
 function handleCanvasClick(event){
@@ -36,7 +36,9 @@ function handleBtnClean() {
     poligono.clean();
 }
 
-
+function handleCanasMouseDown() {
+    // alert("Estas haciendo MouseDown");
+}
 
 
 
