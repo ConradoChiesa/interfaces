@@ -2,7 +2,7 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext('2d');
 let btnClose = document.getElementById("closePoligon");
 let btnClean = document.getElementById("clean");
-// let poligono = [];
+let poligonos = [];
 let poligono = new Poligono();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.addEventListener("dblclick", handleCanvasDbclick);
 });
 
-function handleCanvasClick(event){
+function handleCanvasClick(event) {
     let x = new Number();
     let y = new Number();
     let color = "#FF0000";
@@ -24,23 +24,35 @@ function handleCanvasClick(event){
     console.log("x: " + x + "  y: " + y);
     if (!poligono.centerPoligon) {
         poligono.addCircle(x, y, color);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        poligono.draw();
-    } else {
-        alert("El poligono esta cerrado");
+        reDraw();
     }
+}
 
+function reDraw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    poligono.draw();
+    for (let i = 0; i < poligonos.length; i++) {
+        const poligono = poligonos[i];
+        poligono.draw();
+        poligono.close()
+        poligono.calcCenter();
+        
+    }
 }
 
 function handleBtnClosePoligon() {
     poligono.close();
- if (poligono.cerrado) poligono.calcCenter();
-
+    if (poligono.cerrado){
+        poligono.calcCenter();
+        poligonos.push(poligono);
+        poligono = new Poligono();
+    }
 }
 
 function handleBtnClean() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     poligono.clean();
+    poligonos = [];
 }
 
 function handleCanvasMouseDown() {
