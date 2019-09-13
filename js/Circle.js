@@ -5,6 +5,7 @@ class Circle {
         this.y = y;
         this.radio = radio;
         this.color = color;
+        addEventListener("dblclick", Poligono.prototype.deleteCircle);
     }
 
     draw(ctx) {
@@ -17,3 +18,4 @@ class Circle {
 
 
 }
+
