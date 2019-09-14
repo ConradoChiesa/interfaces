@@ -95,13 +95,13 @@ function handleKeyPress(event) {
 }
 
 function handleCanvasDblclick(event) {
-    alert("Doble Click");
-    let x = event.layerX;
-    let y = event.layerY;
-    for (let i = 0; i < poligonos.length; i++) {
-        const poligono = poligonos[i];
-        if (poligono[i].indice) {
+    console.log("Doble Click detectado");
+    // let x = event.layerX;
+    // let y = event.layerY;
+    // for (let i = 0; i < poligonos.length; i++) {
+    //     const poligono = poligonos[i];
+    //     if (poligono[i]) {
             
-        }
-    }
+    //     }
+    // }
 }

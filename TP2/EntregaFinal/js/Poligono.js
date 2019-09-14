@@ -23,19 +23,18 @@ class Poligono {
         }
     }
 
-    // get indice(x, y) {
-    //     let clicked = false;
-    //     let aux = -1;
-    //     for (let i = 0; i < this.circles.length; i++) {
-    //         const circle = this.circles[i];
-    //         let x1 = circle[i].x;
-    //         let y1 = circle[i].y;
-    //         if (Math.sqrt((x-x1)*(x-x1) + (y-y1)*(y-y1)) < circle.radio * 2) {
-    //             aux = i;
-    //         }
-    //     }
-    //     return aux;
-    // }
+    indice(x, y) {
+        let aux = -1;
+        for (let i = 0; i < this.circles.length; i++) {
+            const circle = this.circles[i];
+            let x1 = circle[i].x;
+            let y1 = circle[i].y;
+            if (Math.abs(x-x1) < 10 && Math.abs(x-x1) < 10) {
+                
+            }
+        }
+        return aux;
+    }
 
     drawLine(x1, y1, x2, y2, color) {
         ctx.beginPath();
