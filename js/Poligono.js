@@ -23,20 +23,6 @@ class Poligono {
         }
     }
 
-    // get indice(x, y) {
-    //     let clicked = false;
-    //     let aux = -1;
-    //     for (let i = 0; i < this.circles.length; i++) {
-    //         const circle = this.circles[i];
-    //         let x1 = circle[i].x;
-    //         let y1 = circle[i].y;
-    //         if (Math.sqrt((x-x1)*(x-x1) + (y-y1)*(y-y1)) < circle.radio * 2) {
-    //             aux = i;
-    //         }
-    //     }
-    //     return aux;
-    // }
-
     drawLine(x1, y1, x2, y2, color) {
         ctx.beginPath();
         ctx.lineWidth = 2;
@@ -65,6 +51,9 @@ class Poligono {
             this.circles.push(circle);
         }else{ 
             console.log("Lugar ocupado");
+            if (dobleClick) {
+                this.delCircle(circle);
+            }
         }
     }
 
@@ -111,7 +100,7 @@ class Poligono {
         // this.center.addEventListener("click", () => {alert("todo es increible")});
     }
 
-    delCircle(event) {
+    delCircle(circle) {
         alert("Deleteando punto");
         let x = event.layerX;
         let y = event.layerY;
