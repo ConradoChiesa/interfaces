@@ -5,7 +5,7 @@ class Poligono {
         let ctx = canvas.getContext('2d');
         this.circles = [];
         this.centerPoligon;
-        
+
     }
 
     draw(){
@@ -54,23 +54,6 @@ class Poligono {
         }
     }
 
-    slot() {
-        alert("llamada a slot");
-        let newCircle = this.circles.pop;
-        for (let i = 0; i < circles.length; i++) {
-            const circle = circles[i];
-            let x1 = circle[i].x;
-            let y1 = circle[i].y;
-            let x2 = newCircle.x;
-            let y2 = newCircle.y;
-            console.log(y2);
-            
-            if (this.circles.length < 1 || Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)) < circle[i].radio + newCircle.radio) 
-                return true;
-            else return false;
-        }
-    }
-    
     close() {
         if (this.circles.length > 2) {
             let x1 = this.circles[0].x;
@@ -114,10 +97,18 @@ class Poligono {
         // this.center.addEventListener("click", () => {alert("todo es increible")});
     }
 
-    deleteCircle(event) {
-        // alert("Deleteando punto");
-        console.log(event);
+    delCircle(event) {
+        alert("Deleteando punto");
+        let x = event.layerX;
+        let y = event.layerY;
+        let pos = new Number();
+        console.log(this.circles);
         
-        this.circles.slice();
+        for (let i = 0; i < this.circles.length; i++) {
+            const circulo = this.circles[i];
+            if (x == circulo.x && y == circulo.y)
+                pos = i;
+        }
+        this.circles.splice(i,1);
     }
 }

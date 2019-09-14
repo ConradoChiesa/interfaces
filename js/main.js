@@ -3,30 +3,62 @@ let ctx = canvas.getContext('2d');
 let btnClose = document.getElementById("closePoligon");
 let btnClean = document.getElementById("clean");
 let poligonos = [];
+let active = false;
 let poligono = new Poligono();
+let mouseIsDown = false;
+
+let doubleClickThreshold = 50;  //ms
+let lastClick = 0;
+let isDragging = false;
+let isDoubleClick = false;
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 
+    
     btnClean.addEventListener("click", handleBtnClean);
     btnClose.addEventListener("click", handleBtnClosePoligon);
-    canvas.addEventListener("click", handleCanvasClick);
-    // canvas.addEventListener("mousedown", handleCanvasMouseDown); esto depende del movimiento del mouse y no de estar apretando click me parece
+    canvas.addEventListener("click", () => { 
+            
+        let thisClick = new Date().getTime();
+        var isDoubleClick = thisClick - lastClick < doubleClickThreshold;
+        lastClick = thisClick;
+            let x = new Number();
+            let y = new Number();
+            let color = "#FF0000";
+            x = event.layerX;
+            y = event.layerY;
+            console.log("x: " + x + "  y: " + y);
+            if (!poligono.centerPoligon) { // CONICIÓN: Y no este ocupado por otro circulo
+                poligono.addCircle(x, y, color);
+                reDraw();
+            }
+    });
+        canvas.addEventListener("dblclick", handleCanvasDblclick);
+        canvas.addEventListener("mousedown", () => {
+        mouseIsDown = true;
+      });
+    
+      canvas.addEventListener("mouseUp", () => {
+        isDragging = false;
+        mouseIsDown = false;
+      });
+    
+      // Using document so you can drag outside of the canvas, use $node
+      // if you cannot drag outside of the canvas
+      canvas.addEventListener("mousemove", () => {
+        if (mouseIsDown) {
+            isDragging = true;
+        }
+      });
+      
     document.addEventListener("keypress", handleKeyPress);
     // canvas.addEventListener("dblclick", handleCanvasDbclick);
+    // document.addEventListener("mouseup", () => { active = false; });
+    // canvas.addEventListener("mousedown", handleCanvasMouseDown);
+    
 });
 
-function handleCanvasClick(event) {
-    let x = new Number();
-    let y = new Number();
-    let color = "#FF0000";
-    x = event.layerX;
-    y = event.layerY;
-    console.log("x: " + x + "  y: " + y);
-    if (!poligono.centerPoligon) { // CONICIÓN: Y no este ocupado por otro circulo
-        poligono.addCircle(x, y, color);
-        reDraw();
-    }
-}
+
+
 
 function reDraw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -55,36 +87,6 @@ function handleBtnClean() {
     poligonos = [];
 }
 
-function handleCanvasMouseDown() {
-
-        var doubleClickThreshold = 50;  //ms
-        var lastClick = 0;
-        var isDragging = false;
-        var isDoubleClick = false;
-        canvas.addEventListener("click", () => {
-          var thisClick = new Date().getTime();
-          var isDoubleClick = thisClick - lastClick < doubleClickThreshold;
-          lastClick = thisClick;
-        });
-      
-        canvas.addEventListener("mousedown", () => {
-          mouseIsDown = true;
-        });
-      
-        canvas.addEventListener("mouseUp", () => {
-          isDragging = false;
-          mouseIsDown = false;
-        });
-      
-        // Using document so you can drag outside of the canvas, use $node
-        // if you cannot drag outside of the canvas
-        canvas.addEventListener("mousemove", () => {
-           if (mouseIsDown) {
-             isDragging = true;
-           }
-        });
-      
-}
 
 function handleKeyPress(event) {
     let teclaPulsada = event.keyCode;
@@ -93,7 +95,51 @@ function handleKeyPress(event) {
     }
 }
 
-function handleCanvasDbclick() {
-    console.log("doble click");
+function handleCanvasDblclick(event) {
+    let x = event.layerX;
+    let y = event.layerY;
+    for (let i = 0; i < poligonos.length; i++) {
+        const poligono = poligonos[i];
+        if (poligono[i].indice) {
+            
+        }
+    }
 }
 
+////////////////////
+
+
+// function handleCanvasClick(event) {
+
+//         If (poligonoActual.vacio()) {
+//             for (let i = 0; i < poligonos.length; i++) {
+//         {
+//         Let vertice = polígonos[I].getVertice()
+//         if(vertice) {
+//         Poligonos[I].borrar(vertice)
+//         }
+//         }
+//         Else
+//         {
+//         Poligono.addCircle(x, y, color);
+//         }
+
+//     let x = new Number();
+//     let y = new Number();
+//     let color = "#FF0000";
+//     x = event.layerX;
+//     y = event.layerY;
+//     console.log("x: " + x + "  y: " + y);
+//     if (!poligono.centerPoligon) { // CONICIÓN: Y no este ocupado por otro circulo
+//         poligono.addCircle(x, y, color);
+//         reDraw();
+//     }
+    
+// // event.addEventListener("click", function(event){
+// //     if(poligonos != null) {
+// //         for (let i = 0; i < poligonos.length; i++) {
+// //             let aux = poligono[i].meclickearon().indice;
+// //         }
+// //     }
+// // })
+// }
