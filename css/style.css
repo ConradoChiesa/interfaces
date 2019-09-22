@@ -1,0 +1,305 @@
+@keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+    }
+
+@keyframes example2 {
+    0% {background-color: red; left:0px; top:0px; width: 100px; height: 100px;}
+    25% {background-color: yellow; left:200px; top:0px; width: 150px; height: 150px;}
+    50% {background-color: blue; left:200px; top:200px; width: 200px; height: 200px;}
+    75% {background-color: green; left:0px; top:200px; width: 250px; height: 250px;}
+    100% {background-color: red; left:0px; top:0px; width: 300px; height: 300px;}
+    }
+    /* El element al cual se aplica la animación */
+.myDiv:active {
+animation: example2 3s linear infinite alternate;
+
+background-color: red;
+}
+
+@keyframes rotate {
+    100% {transform: rotateZ(360deg);}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+/* body  {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: grey;
+} */
+
+
+.myDiv {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+
+    }
+
+.myDiv2 {
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+}
+
+.myDiv2:hover {
+    width: 150px;
+    height: 150px;
+    background-color: darkgreen;
+}
+
+
+
+
+.minutes-container, .hours-container, .seconds-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+
+.hour {
+  border-radius: 10px;
+  background: #000;
+  height: 20%;
+  left: 48.75%;
+  position: absolute;
+  top: 30%;
+  transform-origin: 50% 100%;
+  width: 2.5%;
+}
+
+.min {
+    border-radius: 10px;
+    background-color: #000;
+    height: 40%;
+    left: 49%;
+    position: absolute;
+    top: 10%;
+    transform-origin: 50% 100%;
+    width: 2%;
+}
+
+.sec {
+    border-radius: 10px;
+    background: rgb(59, 59, 59);
+    height: 45%;
+    left: 49.5%;
+    position: absolute;
+    top: 14%;
+    transform-origin: 50% 80%;
+    width: 1%;
+    z-index: 8;
+}
+
+.clock {
+  border-radius: 50%;
+  background: #fff;
+  /* background-size: 88%; */
+  height: 20em;
+  /* padding-bottom: 31%; */
+  position: relative;
+  width: 20em;
+}
+
+.hours-container {
+  animation: rotate 43200s infinite linear;
+}
+
+.minutes-container {
+  animation: rotate 3600s infinite linear;
+}
+
+.seconds-container {
+  animation: rotate 60s infinite linear;
+}
+
+.clock.simple:after {
+  background: #000;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 5%;
+  height: 5%;
+  z-index: 10;
+}
+
+.game {
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 450px;
+}
+
+.back-3 {
+  position: absolute;
+  background-attachment: fixed;
+  height: 333px;
+  width: 100%;
+  background: transparent url(image/) 40% 0 repeat;
+  z-index: -2;
+  animation: moveback 30s linear infinite;
+  opacity:0.6;
+  margin: 0;
+  padding:0;
+}
+
+.back-2 {
+  position: absolute;
+  background-attachment: fixed;
+  background-position: bottom left;
+  z-index: -1;
+  background: transparent url(image/2D-Mountain-Backgrounds4.png) 20% 0 repeat;
+  opacity:0.6;
+  margin: 0;
+  padding:0;
+  width: 100%;
+  height: 333px;
+  animation: moveback 30s linear infinite;
+}
+@keyframes moveback {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -609px;
+  }
+}
+
+.floor {
+  position: absolute;
+  bottom: 0px;
+  background-attachment: fixed;
+  background: url(image/floor.png) right repeat-x;
+  width: 100%;
+  /* background-repeat: repeat-x; */
+  height: 30%;
+  z-index: -1;
+  animation: movefloor 4s linear infinite;
+
+}
+@keyframes movefloor {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1998px;
+  }
+}
+.boyRun {
+  position: absolute;
+  top: 63%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  width: calc(864px / 8);
+  height: 140px;
+  background: url(image/greenBoy1.png);
+  animation: run 0.6s steps(8) infinite;
+}
+
+.boyJump {
+  position: absolute;
+  top: 63%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  width: calc(864px / 8);
+  height: 140px;
+  background: url(image/greenBoy1.png);
+  animation: jump 0.6s steps(8) infinite;
+}
+@keyframes run {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -864px;
+  }
+}
+
+@keyframes jump {
+  0% {top: 63%; background-position-x: 0;}
+  25% {top: 43%;}
+  50% {top: 23%;}
+  75% {top: 43%;}
+  100% {top: 63%; background-position-x: -864px;
+  }
+}
+
+.coin-container {
+  position: absolute;
+  top: 30%;
+  animation: moveCoin 3s linear 2s infinite;
+
+}
+
+.coin {
+  background-size: cover;
+  position: absolute;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: calc(1000px / 10);
+  height: 100px;
+  background: url(image/coin-sprite-animation.png) ;
+  animation: rotate 0.6s steps(10) infinite;
+
+}
+
+@keyframes rotate {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1000px;
+  }
+}
+@keyframes moveCoin {
+  from {
+  left: 100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
+.bush1 {
+  background: url(image/arbusto1.png);
+  position: absolute;
+  width: 65px;
+  height: 50px;
+  top: 60%;
+  z-index: 0;
+  animation: moveCoin 4s linear infinite;
+}
+
+.bush2 {
+ animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+
+.tree1 {
+
+}
+
+.tree2 {
+
+}
+
+.hidden {
+  display: none;
+}
