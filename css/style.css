@@ -59,9 +59,6 @@ html, body {
     background-color: darkgreen;
 }
 
-
-
-
 .minutes-container, .hours-container, .seconds-container {
     position: absolute;
     top: 0;
@@ -151,6 +148,20 @@ html, body {
 .back-3 {
   position: absolute;
   background-attachment: fixed;
+  background-position: bottom left;
+  z-index: -3;
+  background: transparent url(image/2D-Mountain-Backgrounds4.png) 20% 0 repeat;
+  opacity:0.6;
+  margin: 0;
+  padding:0;
+  width: 100%;
+  height: 333px;
+  animation: moveback 30s linear infinite;
+}
+
+.back-2 {
+  position: absolute;
+  background-attachment: fixed;
   height: 333px;
   width: 100%;
   background: transparent url(image/) 40% 0 repeat;
@@ -161,19 +172,6 @@ html, body {
   padding:0;
 }
 
-.back-2 {
-  position: absolute;
-  background-attachment: fixed;
-  background-position: bottom left;
-  z-index: -1;
-  background: transparent url(image/2D-Mountain-Backgrounds4.png) 20% 0 repeat;
-  opacity:0.6;
-  margin: 0;
-  padding:0;
-  width: 100%;
-  height: 333px;
-  animation: moveback 30s linear infinite;
-}
 @keyframes moveback {
   from {
     background-position-x: 0;
@@ -224,6 +222,7 @@ html, body {
   background: url(image/greenBoy1.png);
   animation: jump 0.6s steps(8) infinite;
 }
+
 @keyframes run {
   from {
     background-position-x: 0;
@@ -245,8 +244,7 @@ html, body {
 .coin-container {
   position: absolute;
   top: 30%;
-  animation: moveCoin 3s linear 2s infinite;
-
+  animation: moveCoin 4s linear infinite;
 }
 
 .coin {
@@ -284,22 +282,46 @@ html, body {
   width: 65px;
   height: 50px;
   top: 60%;
-  z-index: 0;
+  z-index: -1;
   animation: moveCoin 4s linear infinite;
 }
 
 .bush2 {
- animation: name duration timing-function delay iteration-count direction fill-mode;
+  background: url(image/arbusto2.png);
+  position: absolute;
+  width: 49px;
+  height: 31px;
+  top: 65%;
+  z-index: -1;
+  animation: moveCoin 4s linear .1s infinite;
 }
 
 .tree1 {
+  position: absolute;
+  background: url(image/arbol1.png);
+  width: 66px;
+  height: 146px;
+  top: 40%;
 
+  z-index: -2;
+  animation: moveCoin 7s linear infinite;
 }
 
 .tree2 {
+  position: absolute;
+  background: url(image/arbol2.png);
+  width: 59px;
+  height: 117px;
+  top: 48%;
 
+  z-index: -2;
+  animation: moveCoin 7s linear 0.5s infinite;
 }
 
 .hidden {
   display: none;
+}
+
+.score {
+
 }
