@@ -1,3 +1,60 @@
+@keyframes movefloor {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1998px;
+  }
+}
+
+@keyframes jump {
+  0% {top: 63%; background-position-x: 0;}
+  25% {top: 43%;}
+  50% {top: 23%;}
+  75% {top: 43%;}
+  100% {top: 63%; background-position-x: -864px;
+  }
+}
+
+@keyframes moveback {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -609px;
+  }
+}
+
+@keyframes run {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -864px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1000px;
+  }
+}
+@keyframes moveCoin {
+  from {
+  left: 100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .startView {
   background: #fff 40%;
   width: 100%;
@@ -59,14 +116,7 @@
   animation: movefloor 4s linear infinite;
 
 }
-@keyframes movefloor {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: -1998px;
-  }
-}
+
 .boyRun {
   position: absolute;
   top: 63%;
@@ -76,7 +126,7 @@
   height: 140px;
   background: url(image/greenBoy1.png);
   animation: run 0.6s steps(8) infinite;
-  z-index: -1;
+
 }
 
 .boyJump {
@@ -87,16 +137,8 @@
   width: calc(864px / 8);
   height: 140px;
   background: url(image/greenBoy1.png);
+  z-index: -1;
   animation: jump 0.6s steps(8) infinite;
-}
-
-@keyframes run {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: -864px;
-  }
 }
 
 .coin-container {
@@ -115,23 +157,6 @@
   background: url(image/coin-sprite-animation.png) ;
   animation: rotate 0.6s steps(10) infinite;
   z-index: -1;
-}
-
-@keyframes rotate {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: -1000px;
-  }
-}
-@keyframes moveCoin {
-  from {
-  left: 100%;
-  }
-  to {
-    left: 0%;
-  }
 }
 
 .bush1 {
@@ -171,7 +196,6 @@
   width: 59px;
   height: 117px;
   top: 48%;
-
   z-index: -2;
   animation: moveCoin 7s linear 0.5s infinite;
 }
@@ -194,24 +218,6 @@
 .score {
   position: absolute;
 
-}
-
-@keyframes jump {
-  0% {top: 63%; background-position-x: 0;}
-  25% {top: 43%;}
-  50% {top: 23%;}
-  75% {top: 43%;}
-  100% {top: 63%; background-position-x: -864px;
-  }
-}
-
-@keyframes moveback {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: -609px;
-  }
 }
 
 .score {

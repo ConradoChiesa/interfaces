@@ -15,6 +15,7 @@ function start() {
 
 function startGame() {
     timer = 5;
+    coins = 0;
     document.addEventListener("keydown", handleKeyDown);
     startView.className = "hidden";
     var countDown = setInterval( () => {
