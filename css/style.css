@@ -21,7 +21,7 @@
     background-position-x: 0;
   }
   to {
-    background-position-x: -609px;
+    background-position-x: -1440px;
   }
 }
 
@@ -88,7 +88,7 @@ p {
   padding:0;
   width: 100%;
   height: 333px;
-  animation: moveback 30s linear infinite;
+  animation: moveback 8s linear infinite;
 }
 
 /* .back-2 {
@@ -108,8 +108,10 @@ p {
   position: absolute;
   bottom: 0px;
   background-attachment: fixed;
-  background: url(image/floor.png) right repeat-x;
+  background: url(image/floor.png) top left repeat-x;
+  background-size: 100% 100%;
   width: 100%;
+
   /* background-repeat: repeat-x; */
   height: 30%;
   z-index: -2;
@@ -144,7 +146,7 @@ p {
 .coin-container {
   position: absolute;
   top: 30%;
-  animation: moveCoin 4s linear infinite;
+  animation: moveCoin 5s linear infinite;
 }
 
 .coin {

@@ -1,11 +1,20 @@
 let boy = document.getElementById('boy');
 let coin = document.getElementById('coin');
 let coins = new Number();
-let timer = new Number();
+let remainingTime = new Number();
 let startView = document.getElementById('startView');
 let time = document.getElementById('time');
 let score = document.getElementById('score');
 document.addEventListener("DOMContentLoaded", start);
+
+//https://codeincomplete.com/posts/javascript-game-foundations-the-game-loop/
+
+// Variables Nuevas
+let finish=true;
+let jumping = false;
+let firstPosY = boy.getBoundingClientRect().top;
+let now, dt, last, startJump = timestamp();
+let raf;
 
 function start() {
     let btnPlay = document.getElementById("play");
@@ -13,62 +22,110 @@ function start() {
     btnPlay.addEventListener("click", startGame);
 }
 
+function update() {
+    if (remainingTime > 0) {
+        remainingTime--;
+        detectarColision()
+    } else {
+        finish = true;
+    }
+    if (boy.getBoundingClientRect().top != firstPosY && timestamp() > startJump + 600)
+    jumping = false;
+}
+
+function render(raf) {
+     console.log(boy.getBoundingClientRect().top);
+     
+    if(jumping) {
+        boy.className = "boyJump";
+    }
+    else { 
+        boy.className = "boyRun";
+    }
+    let txtTime = "Tiempo: " + Math.round(remainingTime / 60);
+    let txtScore =  "Monedas: " + coins;
+    time.innerHTML = txtTime;
+    score.innerHTML = txtScore;
+    if(finish){
+        finishGame(raf);
+        
+    }
+}
+
+function gameLoop(){
+    raf = window.requestAnimationFrame(gameLoop);
+    now = timestamp();
+    dt = (now - last) / 1000;
+    update();
+    render(raf);
+    last = now;
+}
+
+
 function startGame() {
-    timer = 5;
+    remainingTime = 5*60;
     coins = 0;
     document.addEventListener("keydown", handleKeyDown);
     startView.className = "hidden";
-    var countDown = setInterval( () => {
-        let txtTime = "Tiempo: " + timer;
-        let txtScore =  "Monedas: " + coins;
-        time.innerHTML = txtTime;
-        score.innerHTML = txtScore;
-        if (timer > 0) {
-            timer--;
-            console.log(timer);
-        } else {
-            finishGame();
-            clearInterval(countDown);
-        }
-    }, 1000);
+    finish = false;
+    raf = window.requestAnimationFrame(gameLoop);
 }
 
-function finishGame() {
-    console.log("finish");
+// function startGameBak() {
+//     timer = 5;
+//     coins = 0;
+//     document.addEventListener("keydown", handleKeyDown);
+//     startView.className = "hidden";
+//     var countDown = setInterval( () => {
+//         let txtTime = "Tiempo: " + timer;
+//         let txtScore =  "Monedas: " + coins;
+//         time.innerHTML = txtTime;
+//         score.innerHTML = txtScore;
+//         if (timer > 0) {
+//             timer--;
+//             console.log(timer);
+//         } else {
+//             finishGame();
+//             clearInterval(countDown);
+//         }
+//     }, 1000);
+// }
+
+function finishGame(raf) {
+    cancelAnimationFrame(raf);
     document.removeEventListener("keydown", handleKeyDown);
     startView.className = "startView";
 }
 
 function handleKeyDown(e) {
     if (e.keyCode == 38) {
-        boy.className = "boyJump";
-        setTimeout( () => { 
-            boy.className = "boyRun";
-        }, 600);
-        detectarColision()
+        jumping = true;
+        startJump = timestamp();
     }
 }
+// function stopJump(){
+//     if (e.keyCode == 38) {
+//         jumping = false;
+//     }
+// }
 
 function detectarColision(){
-    setTimeout( () => {
-        let a_pos = 
+    let a_pos = 
             {   t: boy.getBoundingClientRect().top, 
                 l: boy.getBoundingClientRect().left, 
                 r: boy.getBoundingClientRect().left + boy.getBoundingClientRect().width, 
                 b: boy.getBoundingClientRect().top + boy.getBoundingClientRect().height
             };
-        let b_pos = 
-            {   t: coin.getBoundingClientRect().top, 
-                l: coin.getBoundingClientRect().left, 
-                r: coin.getBoundingClientRect().left + coin.getBoundingClientRect().width, 
-                b: coin.getBoundingClientRect().top + coin.getBoundingClientRect().height
-            };
-        if(a_pos.l <= b_pos.r && a_pos.r >= b_pos.l 
-        && a_pos.b >= b_pos.t && a_pos.t <= b_pos.b ) {
-                colision()
-                playSound()
-        }
-    }, 300);   
+    let b_pos = 
+        {   t: coin.getBoundingClientRect().top, 
+            l: coin.getBoundingClientRect().left, 
+            r: coin.getBoundingClientRect().left + coin.getBoundingClientRect().width, 
+            b: coin.getBoundingClientRect().top + coin.getBoundingClientRect().height
+        };
+    if(a_pos.l <= b_pos.r && a_pos.r >= b_pos.l 
+    && a_pos.b >= b_pos.t && a_pos.t <= b_pos.b ) {
+            colision()
+    }
 }
 
 function playSound() {
@@ -78,12 +135,17 @@ function playSound() {
     audio["bien"].play();
 }
 
-function colision() {
+
+function colision(){
     coins += 1;
-    timer = timer + 3;
-    console.log(coins);
+    remainingTime = remainingTime + 3 * 60;
+    playSound()
     coin.className = "hidden";
-    setTimeout( () => {
+    setTimeout(function(){
         coin.className = "coin";
-    }, 900);
+    },1000);
 }
+
+function timestamp() {
+    return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
+  }
