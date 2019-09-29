@@ -230,3 +230,9 @@ p {
   left: 2%;
   margin: 10%;
 }
+
+.play {
+  height: 60px;
+  width: 100px;
+  font-weight: bolder;
+}

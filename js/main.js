@@ -1,25 +1,23 @@
-let boy = document.getElementById('boy');
-let coin = document.getElementById('coin');
+document.addEventListener("DOMContentLoaded", start);
+const gameTime = 20;
 let coins = new Number();
 let remainingTime = new Number();
+let boy = document.getElementById('boy');
+let coin = document.getElementById('coin');
 let startView = document.getElementById('startView');
 let time = document.getElementById('time');
 let score = document.getElementById('score');
-document.addEventListener("DOMContentLoaded", start);
-
-//https://codeincomplete.com/posts/javascript-game-foundations-the-game-loop/
-
-// Variables Nuevas
-let finish=true;
+let finish = true;
 let jumping = false;
 let firstPosY = boy.getBoundingClientRect().top;
 let now, dt, last, startJump = timestamp();
-let raf;
+let raf; // requestAnimationFrame
 
 function start() {
     let btnPlay = document.getElementById("play");
     let btnExit = document.getElementById("exit");
     btnPlay.addEventListener("click", startGame);
+    btnExit.addEventListener("click", handleExitGame)
 }
 
 function update() {
@@ -34,8 +32,6 @@ function update() {
 }
 
 function render(raf) {
-     console.log(boy.getBoundingClientRect().top);
-     
     if(jumping) {
         boy.className = "boyJump";
     }
@@ -63,33 +59,13 @@ function gameLoop(){
 
 
 function startGame() {
-    remainingTime = 5*60;
+    remainingTime = gameTime * 60;
     coins = 0;
     document.addEventListener("keydown", handleKeyDown);
     startView.className = "hidden";
     finish = false;
     raf = window.requestAnimationFrame(gameLoop);
 }
-
-// function startGameBak() {
-//     timer = 5;
-//     coins = 0;
-//     document.addEventListener("keydown", handleKeyDown);
-//     startView.className = "hidden";
-//     var countDown = setInterval( () => {
-//         let txtTime = "Tiempo: " + timer;
-//         let txtScore =  "Monedas: " + coins;
-//         time.innerHTML = txtTime;
-//         score.innerHTML = txtScore;
-//         if (timer > 0) {
-//             timer--;
-//             console.log(timer);
-//         } else {
-//             finishGame();
-//             clearInterval(countDown);
-//         }
-//     }, 1000);
-// }
 
 function finishGame(raf) {
     cancelAnimationFrame(raf);
@@ -103,11 +79,6 @@ function handleKeyDown(e) {
         startJump = timestamp();
     }
 }
-// function stopJump(){
-//     if (e.keyCode == 38) {
-//         jumping = false;
-//     }
-// }
 
 function detectarColision(){
     let a_pos = 
@@ -117,15 +88,15 @@ function detectarColision(){
                 b: boy.getBoundingClientRect().top + boy.getBoundingClientRect().height
             };
     let b_pos = 
-        {   t: coin.getBoundingClientRect().top, 
+    {   t: coin.getBoundingClientRect().top, 
             l: coin.getBoundingClientRect().left, 
             r: coin.getBoundingClientRect().left + coin.getBoundingClientRect().width, 
             b: coin.getBoundingClientRect().top + coin.getBoundingClientRect().height
         };
     if(a_pos.l <= b_pos.r && a_pos.r >= b_pos.l 
-    && a_pos.b >= b_pos.t && a_pos.t <= b_pos.b ) {
+        && a_pos.b >= b_pos.t && a_pos.t <= b_pos.b ) {
             colision()
-    }
+        }
 }
 
 function playSound() {
@@ -148,4 +119,6 @@ function colision(){
 
 function timestamp() {
     return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
-  }
+}
+
+function handleExitGame() { location.href = "https://www.google.com/"; }
