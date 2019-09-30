@@ -1,0 +1,250 @@
+@keyframes movefloor {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1998px;
+  }
+}
+
+@keyframes jump {
+  0% {top: 63%; background-position-x: 0;}
+  25% {top: 43%;}
+  50% {top: 23%;}
+  75% {top: 43%;}
+  100% {top: 63%; background-position-x: -864px;
+  }
+}
+
+@keyframes moveback {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1440px;
+  }
+}
+
+@keyframes run {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -864px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1000px;
+  }
+}
+@keyframes moveCoin {
+  from {
+  left: 100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
+.chronoCont {
+  width: 10%;
+  height: 10%;
+}
+
+.chronometer {
+  width: 100%;
+  height: 100%;
+  margin: 15%;
+  float: left;
+}
+
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.startView {
+  background: #fff 40%;
+  width: 100%;
+  height: 450px;
+  z-index: 0;
+  opacity: .7;
+}
+
+.containerbtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.game {
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 450px;
+}
+
+.back-3 {
+  position: absolute;
+  background-attachment: fixed;
+  background-position: bottom left;
+  z-index: -6;
+  background: transparent url(image/2D-Mountain-Backgrounds4.png) 20% 0 repeat;
+  opacity:0.6;
+  margin: 0;
+  padding:0;
+  width: 100%;
+  height: 333px;
+  animation: moveback 8s linear infinite;
+}
+
+/* .back-2 {
+  position: absolute;
+  background-attachment: fixed;
+  height: 333px;
+  width: 100%;
+  background: transparent url(image/) 40% 0 repeat;
+  z-index: -5;
+  animation: moveback 30s linear infinite;
+  opacity:0.6;
+  margin: 0;
+  padding:0;
+} */
+
+.floor {
+  position: absolute;
+  bottom: 0px;
+  background-attachment: fixed;
+  background: url(image/floor.png) top left repeat-x;
+  background-size: 100% 100%;
+  width: 100%;
+
+  /* background-repeat: repeat-x; */
+  height: 30%;
+  z-index: -2;
+  animation: movefloor 4s linear infinite;
+
+}
+
+.boyRun {
+  position: absolute;
+  top: 63%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  width: calc(864px / 8);
+  height: 140px;
+  background: url(image/greenBoy1.png);
+  animation: run 0.6s steps(8) infinite;
+
+}
+
+.boyJump {
+  position: absolute;
+  top: 63%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  width: calc(864px / 8);
+  height: 140px;
+  background: url(image/greenBoy1.png);
+  z-index: -1;
+  animation: jump 0.6s steps(8) infinite;
+}
+
+.coin-container {
+  position: absolute;
+  top: 30%;
+  animation: moveCoin 4s linear infinite;
+}
+
+.coin {
+  background-size: cover;
+  position: absolute;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: calc(1000px / 10);
+  height: 100px;
+  background: url(image/coin-sprite-animation.png) ;
+  animation: rotate 0.6s steps(10) infinite;
+  z-index: -1;
+}
+
+.bush1 {
+  background: url(image/arbusto1.png);
+  position: absolute;
+  width: 65px;
+  height: 50px;
+  top: 60%;
+  z-index: -2;
+  animation: moveCoin 4s linear infinite;
+}
+
+.bush2 {
+  background: url(image/arbusto2.png);
+  position: absolute;
+  width: 49px;
+  height: 31px;
+  top: 65%;
+  z-index: -3;
+  animation: moveCoin 4s linear .1s infinite;
+}
+
+.tree1 {
+  position: absolute;
+  background: url(image/arbol1.png);
+  width: 66px;
+  height: 146px;
+  top: 40%;
+
+  z-index: -5;
+  animation: moveCoin 7s linear infinite;
+}
+
+.tree2 {
+  position: absolute;
+  background: url(image/arbol2.png);
+  width: 59px;
+  height: 117px;
+  top: 48%;
+  z-index: -6;
+  animation: moveCoin 8s linear 0.5s infinite;
+}
+
+.hidden {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  width: 20%;
+  height: 10%;
+  opacity: .7;
+  background: #fff;
+  z-index: 0;
+  right: 5%;
+  top: 5%;
+  border-radius: 6%;
+}
+.score {
+  position: absolute;
+
+}
+
+.score {
+  right: 2%;
+}
+
+.time {
+  left: 2%;
+  margin: 10%;
+}
+
+.play {
+  height: 60px;
+  width: 100px;
+  font-weight: bolder;
+}
