@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", start);
-const gameTime = 20;
+const gameTime = 5;
 let coins = new Number();
 let remainingTime = new Number();
 let boy = document.getElementById('boy');
@@ -42,7 +42,7 @@ function render(raf) {
     else
         boy.className = "boyRun";
     let txtTime = Math.round(remainingTime / 60);
-    let txtScore = "Monedas: " + coins;
+    let txtScore = coins;
     time.innerHTML = txtTime;
     score.innerHTML = txtScore;
     if(finish) finishGame(raf);
@@ -71,6 +71,10 @@ function finishGame(raf) {
     cancelAnimationFrame(raf);
     document.removeEventListener("keydown", handleKeyDown);
     startView.className = "startView";
+    let gameOver = document.getElementById("gameOver");
+    let coinsColleted = document.getElementById("coinsCollect");
+    gameOver.innerText = "GAME OVER";
+    coinsColleted.innerText = "Total de monedas: " + coins;
 }
 
 function handleKeyDown(e) {
@@ -109,7 +113,7 @@ function playSound() {
 
 function colision(){
     coins += 1;
-    remainingTime = remainingTime + 3 * 60;
+    remainingTime = remainingTime + 4 * 60;
     playSound()
     coin.className = "hidden";
     coinContainer.className = "hidden";
