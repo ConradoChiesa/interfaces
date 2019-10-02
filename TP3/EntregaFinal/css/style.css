@@ -88,24 +88,25 @@ p {
   background: transparent url(image/2D-Mountain-Backgrounds4.png) 20% 0 repeat;
   opacity:0.6;
   margin: 0;
-  padding:0;
+  padding: 0;
   width: 100%;
   height: 333px;
-  animation: moveback 8s linear infinite;
+  animation: moveback 30s linear infinite;
 }
 
-/* .back-2 {
+.back-2 {
   position: absolute;
   background-attachment: fixed;
-  height: 333px;
-  width: 100%;
-  background: transparent url(image/) 40% 0 repeat;
-  z-index: -5;
-  animation: moveback 30s linear infinite;
+  background-position: bottom left;
+  z-index: -6;
+  background: transparent url(image/2D-Mountain-Backgrounds3.png) 20% 0 repeat;
   opacity:0.6;
   margin: 0;
-  padding:0;
-} */
+  padding: 0;
+  width: 100%;
+  height: 333px;
+  animation: moveback 30s linear infinite;
+}
 
 .floor {
   position: absolute;

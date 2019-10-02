@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", start);
-const gameTime = 5;
+const gameTime = 30;
 let coins = new Number();
 let remainingTime = new Number();
 let boy = document.getElementById('boy');
@@ -8,6 +8,8 @@ let coinContainer = document.getElementById('coin-container');
 let startView = document.getElementById('startView');
 let time = document.getElementById('time');
 let score = document.getElementById('score');
+let back = document.getElementById('back');
+let floor = document.getElementById('floor');
 let finish = true;
 let jumping = false;
 let firstPosY = boy.getBoundingClientRect().top;
@@ -57,14 +59,22 @@ function gameLoop() {
     last = now;
 }
 
-
 function startGame() {
     remainingTime = gameTime * 60;
     coins = 0;
     document.addEventListener("keydown", handleKeyDown);
     startView.className = "hidden";
+    setBack();
     finish = false;
     raf = window.requestAnimationFrame(gameLoop);
+}
+
+function setBack() {
+    let randomBack = Math.floor(Math.random() * 10) ;
+    if (randomBack < 5)
+        back.className = "back-3";
+    else
+        back.className = "back-2";
 }
 
 function finishGame(raf) {
@@ -75,6 +85,7 @@ function finishGame(raf) {
     let coinsColleted = document.getElementById("coinsCollect");
     gameOver.innerText = "GAME OVER";
     coinsColleted.innerText = "Total de monedas: " + coins;
+    back.className = "hidden";
 }
 
 function handleKeyDown(e) {
@@ -84,22 +95,22 @@ function handleKeyDown(e) {
     }
 }
 
-function detectarColision(){
+function detectarColision() {
     let a_pos = 
             {   t: boy.getBoundingClientRect().top, 
                 l: boy.getBoundingClientRect().left, 
                 r: boy.getBoundingClientRect().left + boy.getBoundingClientRect().width, 
-                b: boy.getBoundingClientRect().top + boy.getBoundingClientRect().height
+                b: boy.getBoundingClientRect().top + boy.getBoundingClientRect().height,
             };
     let b_pos = 
-    {   t: coin.getBoundingClientRect().top, 
+        {   t: coin.getBoundingClientRect().top, 
             l: coin.getBoundingClientRect().left, 
             r: coin.getBoundingClientRect().left + coin.getBoundingClientRect().width, 
-            b: coin.getBoundingClientRect().top + coin.getBoundingClientRect().height
+            b: coin.getBoundingClientRect().top + coin.getBoundingClientRect().height,
         };
     if(a_pos.l <= b_pos.r && a_pos.r >= b_pos.l 
         && a_pos.b >= b_pos.t && a_pos.t <= b_pos.b ) {
-            colision()
+            colision();
         }
 }
 
@@ -111,22 +122,23 @@ function playSound() {
 }
 
 
-function colision(){
+function colision() {
     coins += 1;
     remainingTime = remainingTime + 4 * 60;
-    playSound()
+    playSound();
     coin.className = "hidden";
     coinContainer.className = "hidden";
     coinManegerTime = timestamp();
 }
 
 function coinManager() {
-    if (coinManegerTime + 4000 < timestamp() && coin.className == "hidden"  ) {
+    if (coinManegerTime + 4000 < timestamp() && coin.className == "hidden") {
         coin.className = "coin";
         coinContainer.className = "coin-container";
     }
 
 }
+
 function timestamp() {
     return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
 }
