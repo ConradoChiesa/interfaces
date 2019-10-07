@@ -15,6 +15,11 @@ class Circle {
         ctx.closePath();
     }
 
-
+    movePoint(event) {
+        console.log("moving point");
+        
+        this.x += event.layerX;
+        this.y += event.layerY;
+    }
 }
 

@@ -94,21 +94,35 @@ class Poligono {
 
         this.centerPoligon = center;
         this.centerPoligon.draw(ctx);
-        // this.center.addEventListener("click", () => {alert("todo es increible")});
     }
 
     delCircle(event) {
-        alert("Deleteando punto");
+        let radio = 10;
         let x = event.layerX;
         let y = event.layerY;
-        let pos = new Number();
-        console.log(this.circles);
-        
         for (let i = 0; i < this.circles.length; i++) {
-            const circulo = this.circles[i];
-            if (x == circulo.x && y == circulo.y)
-                pos = i;
+            const circ = this.circles[i];
+            let x1 = circ.x;
+            let y1 = circ.y;
+            if (this.circles.length > 1 && Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1)) < circ.radio + radio
+            && this.circles.length > 3) {
+                this.circles.splice(i,1);
+            }
         }
-        this.circles.splice(i,1);
+        reDraw();
     }
+
+    tryToMove(x, y, event) {
+        let radio = 10;
+        for (let i = 0; i < this.circles.length; i++) {
+            const circ = this.circles[i];
+            let x1 = circ.x;
+            let y1 = circ.y;
+            if (this.circles.length > 1 && Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1)) > circ.radio + radio)
+            this.circles.
+            circ.movePoint(event);
+            reDraw();
+        }
+    }
+    
 }
