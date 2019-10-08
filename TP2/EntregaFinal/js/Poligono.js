@@ -4,7 +4,7 @@ class Poligono {
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
         this.circles = [];
-        this.centerPoligon;
+        this.center;
 
     }
 
@@ -17,23 +17,9 @@ class Poligono {
                 let y1 = this.circles[i-1].y;
                 let x2 = this.circles[i].x;
                 let y2 = this.circles[i].y;
-                let color = "#FFFF00"
-                this.drawLine(x1, y1, x2, y2, color);
+                this.drawLine(x1, y1, x2, y2, "#FFFF00");
             }
         }
-    }
-
-    indice(x, y) {
-        let aux = -1;
-        for (let i = 0; i < this.circles.length; i++) {
-            const circle = this.circles[i];
-            let x1 = circle[i].x;
-            let y1 = circle[i].y;
-            if (Math.abs(x-x1) < 10 && Math.abs(x-x1) < 10) {
-                
-            }
-        }
-        return aux;
     }
 
     drawLine(x1, y1, x2, y2, color) {
@@ -63,7 +49,7 @@ class Poligono {
         if (!ocupado) {
             this.circles.push(circle);
         }else{ 
-            console.log("Lugar ocupado");
+            alert("Lugar ocupado");
         }
     }
 
@@ -73,8 +59,7 @@ class Poligono {
             let y1 = this.circles[0].y;
             let x2 = this.circles[this.circles.length-1].x;
             let y2 = this.circles[this.circles.length-1].y;
-            let color = "#FFFF00";
-            this.drawLine(x1, y1, x2, y2, color);
+            this.drawLine(x1, y1, x2, y2, "#FFFF00");
         } else {
             alert("El poligono debe contar con al menos 3 vertices");
         }
@@ -89,11 +74,11 @@ class Poligono {
     clean() {
         for (let i = 0; i < this.circles.length; i++) 
             this.circles.splice(i);
-            this.centerPoligon = null;
+            this.center = null;
     }
 
     calcCenter() {
-        let color = "#00FF00"
+        let color = [0,255,0]
         let radio = 7;
         let promX = new Number();
         let promY = new Number();
@@ -103,25 +88,72 @@ class Poligono {
         }
         promX = promX / this.circles.length;
         promY = promY / this.circles.length;
-        let center = new Circle(promX, promY, radio, color);
-
-        this.centerPoligon = center;
-        this.centerPoligon.draw(ctx);
-        // this.center.addEventListener("click", () => {alert("todo es increible")});
+    
+        this.center = new Circle(promX, promY, radio, color);
+        this.center.draw(ctx);
     }
 
     delCircle(event) {
-        alert("Deleteando punto");
+        let radio = 10;
         let x = event.layerX;
         let y = event.layerY;
-        let pos = new Number();
-        console.log(this.circles);
+        for (let i = 0; i < this.circles.length; i++) {
+            const circ = this.circles[i];
+            let x1 = circ.x;
+            let y1 = circ.y;
+            if (this.circles.length > 1 && Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1)) < circ.radio + radio
+            && this.circles.length > 3) {
+                this.circles.splice(i,1);
+            }
+        }
+        reDraw();
+    }
+
+    tryToMove(x, y) {
+        let x1 = this.center.x;
+        let y1 = this.center.y;
+        if(this.center){
+            if (  Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1)) < this.center.radio)
+            {
+                this.move(x, y)
+                return this; 
+            }
+        }
         
         for (let i = 0; i < this.circles.length; i++) {
-            const circulo = this.circles[i];
-            if (x == circulo.x && y == circulo.y)
-                pos = i;
+            const circ = this.circles[i];
+            let x1 = circ.x;
+            let y1 = circ.y;
+            if (this.circles.length > 1 && Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1)) < circ.radio) {
+                circ.move(x,y);  
+                return circ; 
+            }
         }
-        this.circles.splice(i,1);
+            
     }
+
+    move(x, y) {
+        let x1 = this.center.x;
+        let y1 = this.center.y;
+        let offsetX = x-x1;
+        let offsetY = y-y1;
+        this.movePolygon(offsetX, offsetY);
+    }
+
+    movePolygon(offsetX, offsetY) {
+        for (let i = 0; i < this.circles.length; i++) {
+            const circ = this.circles[i];
+            let x = circ.x + offsetX;
+            let y = circ.y + offsetY;
+            circ.move(x,y);  
+        }
+    }
+
+    tono(deltaY){
+        for (let i = 0; i < this.circles.length; i++) {
+            const circ = this.circles[i];
+            circ.tono(deltaY);  
+        }
+    }
+    
 }

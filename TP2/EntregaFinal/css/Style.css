@@ -7,16 +7,3 @@
     margin-left: 15px;
     margin-top: 15px;
 }
-
-body {
-background-image: url("../image/background-polygonal-gradient.jpg");
-}
-
-.mycanvas {
-    background-color: white;
-}
-
-#titulo {
-    color: #231470;
-    font-style: oblique;
-}
