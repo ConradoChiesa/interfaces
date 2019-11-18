@@ -37,6 +37,7 @@ function load() {
             document.querySelector("#tv").addEventListener("click", mostrarSeries);
             document.querySelector("#tvResponsive").addEventListener("click", mostrarSeries);
             document.querySelector(".tvHome").addEventListener("click", mostrarSeries);
+            document.querySelector("#ayuda").addEventListener("click", mostrarAyuda);
             let brandname = document.getElementById('logo');
             const input = document.getElementById("search-input");
             const searchBtn = document.getElementById("search-btn");
