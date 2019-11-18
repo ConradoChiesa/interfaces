@@ -142,6 +142,7 @@ body {
 
 .inputLupa {
     width: 12px;
+    max-width: 280px;
     height: 12px;
     border: 2px solid #82ADFF;
     border-radius: 50%;
@@ -1433,10 +1434,10 @@ footer .row label {
 
 
 /* resultados */
-
+/* 
 .filtros {
     margin-left: 30px;
-}
+} */
 
 .menuFiltro {
     background-color: #6c757d;
